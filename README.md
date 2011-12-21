@@ -1,7 +1,9 @@
 # My Guelph
 
 A student-made Android application for the University of Guelph.
+
 Tested on:
+
 * Android 4.0.1 (physical Galaxy Nexus)
 * Android 2.3.6 (physical Nexus S)
 
