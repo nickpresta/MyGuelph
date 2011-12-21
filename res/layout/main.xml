@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:baselineAligned="true"
+        android:layout_marginTop="50dp"  >
+
+        <ImageView
+            android:contentDescription="@string/main_news_description"
+            android:layout_gravity="center_horizontal"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:id="@+id/mainImageNews"
+            android:layout_height="wrap_content"
+            android:onClick="displayNews"
+            android:src="@drawable/news" />
+
+        <ImageView
+            android:contentDescription="@string/main_map_description"
+            android:layout_gravity="center_horizontal"
+            android:id="@+id/mainImageMap"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:onClick="displayMap"
+            android:src="@drawable/map" />
+
+        </TableRow>
+        
+    <TableRow>
+        <TextView
+            android:id="@+id/mainNewsTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:layout_weight="1"
+            android:text="@string/main_news" />
+
+        <TextView
+            android:id="@+id/mainMapTextView"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:layout_height="wrap_content"
+            android:text="@string/main_map" />
+    </TableRow>
+    
+    <!-- End row 1 -->
+    
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:baselineAligned="true"
+        android:layout_marginTop="50dp"  >
+
+        <ImageView
+            android:contentDescription="@string/main_directory_description"
+            android:layout_gravity="center_horizontal"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:id="@+id/mainImageDirectory"
+            android:layout_height="wrap_content"
+            android:onClick="displayDirectory"
+            android:src="@drawable/directory" />
+        
+        <ImageView
+            android:contentDescription="@string/main_links_description"
+            android:layout_gravity="center_horizontal"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:id="@+id/mainImageLinks"
+            android:layout_height="wrap_content"
+            android:onClick="displayLinks"
+            android:src="@drawable/links" />
+
+        </TableRow>
+        
+    <TableRow>
+        <TextView
+            android:id="@+id/mainDirectoryTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:layout_weight="1"
+            android:text="@string/main_directory" />
+        
+        <TextView
+            android:id="@+id/mainLinksTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:layout_weight="1"
+            android:text="@string/main_links" />
+
+    </TableRow>
+
+</TableLayout>

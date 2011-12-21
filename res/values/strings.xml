@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- General -->
+    <string name="app_name">My Guelph</string>
+    <string name="app_map">Campus Map</string>
+        
+    <!-- For the Menubar. -->
+    <string name="menu_about">About</string>
+    <string name="about_title">About My Guelph</string>
+    <string name="about_contents">My Guelph by Nick Presta\nnick@nickpresta.ca</string>
+    
+    <!-- For the Main Activity. -->
+    <string name="main_news">News</string>
+    <string name="main_news_description">Campus News</string>
+    <string name="main_map">Map</string>
+    <string name="main_map_description">Campus Map</string>
+    <string name="main_directory">Directory</string>
+    <string name="main_directory_description">Campus Directory</string>
+    <string name="main_links">Important Links</string>
+    <string name="main_links_description">Campus Links</string>
+    
+    <!-- For the Map Activity. -->
+    <string name="search_button">Search</string>
+    <!--  The building names on campus. -->
+    <string-array name="buildings_array">
+        <item>17 University (Family &amp; Consumer Studies)</item>
+        <item>25 University (Real Estate Division)</item>
+        <item>575 Gordon (Residence)</item>
+        <item>A.A. Thornbrough Building</item>
+        <item>Alumni House</item>
+        <item>Alumni Stadium</item>
+        <item>Animal Biotechnology Embryo laboratory</item>
+        <item>Animal Science &amp; Nutrition</item>
+        <item>Arboretum Information Booth</item>
+        <item>Athletics Centre (W.F. Mitchell)</item>
+        <item>Aviary</item>
+        <item>Alexander Hall</item>
+        <item>Axelrod Institute of Ichthyology</item>
+        <item>Bio Control Building</item>
+        <item>Biodiversity Institute of Ontario</item>
+        <item>Bike Centre</item>
+        <item>Blackwood Hall</item>
+        <item>Botany Teaching Greenhouse</item>
+        <item>Bullring Pub</item>
+        <item>Central Animal Facility</item>
+        <item>Central Utilities Plant</item>
+        <item>CESA Building</item>
+        <item>Chemistry</item>
+        <item>Child Care &amp; Learning Centre</item>
+        <item>Cold Storage laboratory</item>
+        <item>College Ave. Family Residence</item>
+        <item>Computing &amp; Communications Services Building</item>
+        <item>The Conservatory</item>
+        <item>Creelman Hall</item>
+        <item>CRIFS Building</item>
+        <item>Crop Science</item>
+        <item>Crop Science Greenhouse</item>
+        <item>Dairy Barn</item>
+        <item>Day Hall</item>
+        <item>Drew Hall</item>
+        <item>East Residence</item>
+        <item>Edmund C. Bovey Administrative Building</item>
+        <item>Edmund C. Bovey laboratory</item>
+        <item>Environmental Biology Annex #1</item>
+        <item>Federal Building</item>
+        <item>Fielding House</item>
+        <item>Firehall</item>
+        <item>Food Science</item>
+        <item>Graham Hall</item>
+        <item>Gryphon Centre</item>
+        <item>Gryphon Dome</item>
+        <item>Guelph Centre for Equine Research</item>
+        <item>Guelph Food Technology Centre</item>
+        <item>H.L. Hutt</item>
+        <item>Hagen Aqualab</item>
+        <item>Hales-McKay Memorial Shelter</item>
+        <item>Header House/Greenhouse</item>
+        <item>Hill\'s Pet Nutrition Primary Healthcare Centre</item>
+        <item>Hilton Centre</item>
+        <item>HOAD House (Residence)</item>
+        <item>Housekeeping Building lane</item>
+        <item>J.C. Hersey Building</item>
+        <item>J.C. Taylor Nature Intrepretive Centre</item>
+        <item>James Archibald Small Animal Clinic</item>
+        <item>John T. Powell Building</item>
+        <item>Johnston Hall</item>
+        <item>Lambton Hall (Residence)</item>
+        <item>Laboratory Services</item>
+        <item>Landscape Architecture</item>
+        <item>Lennox/Addington Hall (Residence)</item>
+        <item>Livestock Pavilion</item>
+        <item>Macdonald Hall</item>
+        <item>Macdonald Institute</item>
+        <item>Macdonald Stewart Art Centre</item>
+        <item>Macdonald Stewart Hall</item>
+        <item>MacKinnon Building</item>
+        <item>MacLachlan Building</item>
+        <item>MacNabb House</item>
+        <item>MacNaughton Building</item>
+        <item>Maids Hall (Residence)</item>
+        <item>Maintenance Buildings</item>
+        <item>Massey Hall</item>
+        <item>McLaughlin Library</item>
+        <item>McNally House</item>
+        <item>Mills Hall</item>
+        <item>O.A.C. Centennial Arboretum Centre</item>
+        <item>OVC Biomedical Sciences</item>
+        <item>OVC Clinical Research</item>
+        <item>OVC Former VMI</item>
+        <item>OVC Lifetime Learning Centre</item>
+        <item>OVC Main Animal Holding</item>
+        <item>OVC Main Building</item>
+        <item>OVC Pathobiology AHL</item>
+        <item>OMAFRA Building</item>
+        <item>One Trent lane</item>
+        <item>Paint Shop</item>
+        <item>Physical Resources Building</item>
+        <item>Plant Growth Facilities Building</item>
+        <item>Presidents House</item>
+        <item>Raithby House</item>
+        <item>Reynolds Building</item>
+        <item>Richards Building</item>
+        <item>Rozanski Hall</item>
+        <item>Science Complex</item>
+        <item>Soil Science Greenhouse</item>
+        <item>South Residence</item>
+        <item>Stewart Building</item>
+        <item>Townsend House (Apiculture Residence)</item>
+        <item>TransCanada Institute</item>
+        <item>Trent/Police Building</item>
+        <item>University Centre</item>
+        <item>Vehicle Services Building</item>
+        <item>War Memorial Hall</item>
+        <item>Watson Hall</item>
+        <item>Wellington Woods</item>
+        <item>Wild Bird Clinic</item>
+        <item>Young House</item>
+        <item>Zavitz Hall</item>
+        <item>Zoology Annex #1</item>
+        <item>Zoology Annex #2</item>
+        <item>Zoology Annex #4</item>
+    </string-array>
+    <!--  The associated building codes. -->
+    <string-array name="buildings_short_array">
+        <item></item>
+        <item></item>
+        <item></item>
+        <item>THRN</item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item>ANNU</item>
+        <item></item>
+        <item>AC</item>
+        <item></item>
+        <item>ALEX</item>
+        <item></item>
+        <item></item>
+        <item>BIO</item>
+        <item></item>
+        <item>BWH</item>
+        <item></item>
+        <item></item>
+        <item>CAF</item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item>CRSC</item>
+        <item></item>
+        <item></item>
+        <item>DH</item>
+        <item></item>
+        <item></item>
+        <item>ECB</item>
+        <item></item>
+        <item>EBA</item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item>FS</item>
+        <item>GRHM</item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item>HUTT</item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item>JTP</item>
+        <item>JHNH</item>
+        <item></item>
+        <item>LABL</item>
+        <item></item>
+        <item>LA</item>
+        <item></item>
+        <item>MAC</item>
+        <item>MINS</item>
+        <item>MSAC</item>
+        <item>MACS</item>
+        <item>MACK</item>
+        <item>MCLN</item>
+        <item></item>
+        <item>MACN</item>
+        <item></item>
+        <item></item>
+        <item>MASS</item>
+        <item>MLIB</item>
+        <item>McNally House</item>
+        <item>Mills Hall</item>
+        <item>O.A.C. Centennial Arboretum Centre</item>
+        <item>OVC Biomedical Sciences</item>
+        <item>OVC Clinical Research</item>
+        <item>OVC Former VMI</item>
+        <item>OVC Lifetime Learning Centre</item>
+        <item>OVC Main Animal Holding</item>
+        <item>OVC Main Building - OVC</item>
+        <item>OVC Pathobiology AHL - PAHL</item>
+        <item>OMAFRA Building</item>
+        <item>One Trent lane</item>
+        <item>Paint Shop</item>
+        <item>Physical Resources Building</item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item>REYN</item>
+        <item>RICH</item>
+        <item>ROZH</item>
+        <item>SCIE</item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item>TCI</item>
+        <item></item>
+        <item></item>
+        <item>VSER</item>
+        <item>WMEM</item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item>ZAV</item>
+        <item>ZOOA</item>
+        <item>ZOOB</item>
+        <item></item>
+    </string-array>
+</resources>
