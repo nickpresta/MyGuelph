@@ -44,6 +44,7 @@ public class MyGuelphNewsAsyncTask extends AsyncTask<URL, Void, ArrayList<ArrayL
             }
         }
 
+        Log.i("MyGuelphNewsAsyncTask", "Finished fetching");
         return results;
     }
 

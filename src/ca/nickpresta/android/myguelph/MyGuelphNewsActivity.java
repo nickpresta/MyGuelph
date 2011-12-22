@@ -6,6 +6,7 @@ import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.Toast;
 
@@ -45,13 +46,21 @@ public class MyGuelphNewsActivity extends Activity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        MyGuelphMenu.onCreateOptionsMenu(menu, getMenuInflater());
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.newsmenu, menu);
+        MyGuelphMenu.onCreateOptionsMenu(menu, inflater);
         return super.onCreateOptionsMenu(menu);
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        return MyGuelphMenu.onOptionsItemSelected(item, this);
+        MyGuelphMenu.onOptionsItemSelected(item, this);
+        int itemId = item.getItemId();
+        if (itemId == R.id.menuRefresh) {
+            Toast.makeText(getApplicationContext(), "Refresh!", Toast.LENGTH_SHORT).show();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
 }

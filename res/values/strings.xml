@@ -13,6 +13,9 @@
     <!-- For the Main Menubar. -->
     <string name="menu_preferences">Preferences</string>
     
+    <!-- For the News Menubar. -->
+    <string name="menu_refresh">Refresh</string>
+    
     <!-- For the Main Activity. -->
     <string name="main_news">News</string>
     <string name="main_news_description">Campus News</string>
