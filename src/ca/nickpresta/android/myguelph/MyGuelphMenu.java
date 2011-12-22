@@ -1,6 +1,7 @@
 
 package ca.nickpresta.android.myguelph;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -8,7 +9,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
-public class MyGuelphMenu {
+public class MyGuelphMenu extends Activity {
 
     private static final int DIALOG_ABOUT = 2;
 

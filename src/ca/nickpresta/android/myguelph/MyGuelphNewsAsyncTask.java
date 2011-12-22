@@ -7,7 +7,8 @@ import nl.matshofman.saxrssreader.RssReader;
 
 import org.xml.sax.SAXException;
 
-import android.app.Activity;
+import android.app.ListActivity;
+import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.util.Log;
 
@@ -17,11 +18,19 @@ import java.util.ArrayList;
 
 public class MyGuelphNewsAsyncTask extends AsyncTask<URL, Void, ArrayList<ArrayList<RssItem>>> {
 
-    private final Activity mParentActivity;
+    private final ListActivity mParentActivity;
+    private ProgressDialog mProgressDialog;
 
-    public MyGuelphNewsAsyncTask(Activity activity) {
+    public MyGuelphNewsAsyncTask(ListActivity activity) {
         super();
         mParentActivity = activity;
+        mProgressDialog = null;
+    }
+
+    @Override
+    protected void onPreExecute() {
+        mProgressDialog = ProgressDialog.show(mParentActivity, "Please wait...", "Fetching news",
+                true, false);
     }
 
     @Override
@@ -52,11 +61,13 @@ public class MyGuelphNewsAsyncTask extends AsyncTask<URL, Void, ArrayList<ArrayL
     protected void onPostExecute(ArrayList<ArrayList<RssItem>> result) {
         // TODO: Implement filling list view, etc
         Log.i("MyGuelphNewsAsyncTask", "Finished");
-        ((MyGuelphNewsActivity) mParentActivity).cancleDialog();
+        mProgressDialog.cancel();
+
         for (ArrayList<RssItem> feed : result) {
             for (RssItem item : feed) {
-                Log.i("MyGuelphNewsAsyncTask", item.getTitle());
+                ((MyGuelphNewsActivity) mParentActivity).addItem(item);
             }
         }
+
     }
 }

@@ -30,6 +30,7 @@
     <string name="guelph_news_main_feed_url">http://feeds.feedburner.com/uoguelph</string>
     <string name="guelph_news_at_guelph_feed_url">http://atguelph.uoguelph.ca/feed/</string>
     <string name="guelph_news_events_feed_url">http://feeds.feedburner.com/CampusEvents</string>
+    <string name="guelph_news_gryphon_main_feed_url">http://gryphons.ca/rss.aspx</string>
     
     <!-- For the Map Activity. -->
     <string name="search_button">Search</string>
