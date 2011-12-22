@@ -4,10 +4,13 @@
     <string name="app_name">My Guelph</string>
     <string name="app_map">Campus Map</string>
         
-    <!-- For the Menubar. -->
+    <!-- For the Global Menubar. -->
     <string name="menu_about">About</string>
     <string name="about_title">About My Guelph</string>
     <string name="about_contents">My Guelph by Nick Presta\nnick@nickpresta.ca</string>
+    
+    <!-- For the Main Menubar. -->
+    <string name="menu_preferences">Preferences</string>
     
     <!-- For the Main Activity. -->
     <string name="main_news">News</string>
