@@ -18,12 +18,12 @@ public class MyGuelphMenu {
 
     public static boolean onOptionsItemSelected(MenuItem item, Context context) {
 
-        switch (item.getItemId()) {
-            case R.id.menuAbout:
-                showDialog(DIALOG_ABOUT, context);
-                return true;
-            default:
-                return false;
+        int itemId = item.getItemId();
+        if (itemId == R.id.menuAbout) {
+            showDialog(DIALOG_ABOUT, context);
+            return true;
+        } else {
+            return false;
         }
     }
 

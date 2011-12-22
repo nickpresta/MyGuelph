@@ -19,7 +19,8 @@ public class MyGuelphMainActivity extends Activity {
     }
 
     public void displayNews(View view) {
-        Toast.makeText(getApplicationContext(), "News!", Toast.LENGTH_SHORT).show();
+        Intent newsIntent = new Intent(view.getContext(), MyGuelphNewsActivity.class);
+        startActivity(newsIntent);
     }
 
     public void displayMap(View view) {
@@ -46,11 +47,10 @@ public class MyGuelphMainActivity extends Activity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         MyGuelphMenu.onOptionsItemSelected(item, this);
-        // Option local to this screen, only.
-        switch (item.getItemId()) {
-            case R.id.menuPreferences:
-                Toast.makeText(getApplicationContext(), "Preferences!", Toast.LENGTH_SHORT).show();
-                return true;
+        int itemId = item.getItemId();
+        if (itemId == R.id.menuPreferences) {
+            Toast.makeText(getApplicationContext(), "Preferences!", Toast.LENGTH_SHORT).show();
+            return true;
         }
         return super.onOptionsItemSelected(item);
     }

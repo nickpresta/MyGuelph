@@ -2,7 +2,8 @@
 <resources>
     <!-- General -->
     <string name="app_name">My Guelph</string>
-    <string name="app_map">Campus Map</string>
+    <string name="app_map">Map</string>
+    <string name="app_news">News</string>
         
     <!-- For the Global Menubar. -->
     <string name="menu_about">About</string>
@@ -21,6 +22,11 @@
     <string name="main_directory_description">Campus Directory</string>
     <string name="main_links">Important Links</string>
     <string name="main_links_description">Campus Links</string>
+    
+    <!-- For the News Activity -->
+    <string name="guelph_news_main_feed_url">http://feeds.feedburner.com/uoguelph</string>
+    <string name="guelph_news_at_guelph_feed_url">http://atguelph.uoguelph.ca/feed/</string>
+    <string name="guelph_news_events_feed_url">http://feeds.feedburner.com/CampusEvents</string>
     
     <!-- For the Map Activity. -->
     <string name="search_button">Search</string>
