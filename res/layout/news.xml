@@ -1,9 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ListView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@android:id/list"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:configChanges="keyboardHidden|orientation" >
+<TabHost
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@android:id/tabhost"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"> 
+    <LinearLayout
+        android:layout_height="fill_parent"
+        android:layout_width="fill_parent"
+        android:orientation="vertical">
+        
+        <TabWidget
+        android:id="@android:id/tabs"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" />
     
-
-</ListView>
+	    <FrameLayout
+	        android:id="@android:id/tabcontent"
+	        android:layout_width="fill_parent"
+	        android:layout_height="fill_parent">
+		   <ListView xmlns:android="http://schemas.android.com/apk/res/android"
+		       android:id="@+id/main_list"
+		       android:layout_width="match_parent"
+		       android:layout_height="match_parent"
+		       android:configChanges="keyboardHidden|orientation" />
+		   <ListView xmlns:android="http://schemas.android.com/apk/res/android"
+               android:id="@+id/at_guelph_list"
+               android:layout_width="match_parent"
+               android:layout_height="match_parent"
+               android:configChanges="keyboardHidden|orientation" />
+		   <ListView xmlns:android="http://schemas.android.com/apk/res/android"
+               android:id="@+id/gryphons_list"
+               android:layout_width="match_parent"
+               android:layout_height="match_parent"
+               android:configChanges="keyboardHidden|orientation" />
+	    </FrameLayout>
+    </LinearLayout>
+</TabHost>

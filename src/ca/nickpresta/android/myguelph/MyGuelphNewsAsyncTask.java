@@ -1,27 +1,29 @@
 
 package ca.nickpresta.android.myguelph;
 
+import ca.nickpresta.android.myguelph.MyGuelphRssFeed.FeedType;
 import nl.matshofman.saxrssreader.RssFeed;
 import nl.matshofman.saxrssreader.RssItem;
 import nl.matshofman.saxrssreader.RssReader;
 
 import org.xml.sax.SAXException;
 
-import android.app.ListActivity;
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.os.AsyncTask;
-import android.util.Log;
 
 import java.io.IOException;
-import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
-public class MyGuelphNewsAsyncTask extends AsyncTask<URL, Void, ArrayList<ArrayList<RssItem>>> {
+public class MyGuelphNewsAsyncTask extends
+        AsyncTask<MyGuelphRssFeed, Void, HashMap<MyGuelphRssFeed.FeedType, ArrayList<RssItem>>> {
 
-    private final ListActivity mParentActivity;
+    private final Activity mParentActivity;
     private ProgressDialog mProgressDialog;
 
-    public MyGuelphNewsAsyncTask(ListActivity activity) {
+    public MyGuelphNewsAsyncTask(Activity activity) {
         super();
         mParentActivity = activity;
         mProgressDialog = null;
@@ -34,38 +36,39 @@ public class MyGuelphNewsAsyncTask extends AsyncTask<URL, Void, ArrayList<ArrayL
     }
 
     @Override
-    protected ArrayList<ArrayList<RssItem>> doInBackground(URL... urls) {
-        ArrayList<ArrayList<RssItem>> results = new ArrayList<ArrayList<RssItem>>();
+    protected HashMap<FeedType, ArrayList<RssItem>> doInBackground(
+            MyGuelphRssFeed... feeds) {
+        HashMap<MyGuelphRssFeed.FeedType, ArrayList<RssItem>> results =
+                new HashMap<MyGuelphRssFeed.FeedType, ArrayList<RssItem>>();
 
-        for (URL url : urls) {
+        for (MyGuelphRssFeed feed : feeds) {
             ArrayList<RssItem> result = null;
-            RssFeed feed = null;
+            RssFeed f = null;
             try {
-                feed = RssReader.read(url);
+                f = RssReader.read(feed.getUrl());
             } catch (SAXException e) {
                 e.printStackTrace();
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            result = feed.getRssItems();
+            result = f.getRssItems();
             if (result != null && result.size() > 1) {
-                results.add(result);
+                results.put(feed.getType(), result);
             }
         }
 
-        Log.i("MyGuelphNewsAsyncTask", "Finished fetching");
         return results;
     }
 
     @Override
-    protected void onPostExecute(ArrayList<ArrayList<RssItem>> result) {
-        // TODO: Implement filling list view, etc
-        Log.i("MyGuelphNewsAsyncTask", "Finished");
+    protected void onPostExecute(HashMap<MyGuelphRssFeed.FeedType, ArrayList<RssItem>> result) {
         mProgressDialog.cancel();
 
-        for (ArrayList<RssItem> feed : result) {
-            for (RssItem item : feed) {
-                ((MyGuelphNewsActivity) mParentActivity).addItem(item);
+        for (Map.Entry<MyGuelphRssFeed.FeedType, ArrayList<RssItem>> feed : result.entrySet()) {
+            MyGuelphRssFeed.FeedType type = feed.getKey();
+            ArrayList<RssItem> item = feed.getValue();
+            for (RssItem i : item) {
+                ((MyGuelphNewsActivity) mParentActivity).addItem(type, i);
             }
         }
 
