@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -22,6 +23,10 @@ public class MyGuelphMenu extends Activity {
         int itemId = item.getItemId();
         if (itemId == R.id.menuAbout) {
             showDialog(DIALOG_ABOUT, context);
+            return true;
+        } else if (itemId == R.id.menuPreferences) {
+            Intent prefsIntent = new Intent(context, MyGuelphPrefsActivity.class);
+            context.startActivity(prefsIntent);
             return true;
         } else {
             return false;

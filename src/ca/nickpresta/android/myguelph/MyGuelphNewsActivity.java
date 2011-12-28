@@ -100,7 +100,7 @@ public class MyGuelphNewsActivity extends TabActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.newsmenu, menu);
+        inflater.inflate(R.menu.refreshmenu, menu);
         MyGuelphMenu.onCreateOptionsMenu(menu, inflater);
         return super.onCreateOptionsMenu(menu);
     }
@@ -158,7 +158,6 @@ public class MyGuelphNewsActivity extends TabActivity {
     }
 
     public void addItem(FeedType type, RssItem item) {
-        Log.i("MyGuelphNewsActivity", type.name());
         switch (type) {
             case MAIN:
                 mMainNewsAdapter.add(item);

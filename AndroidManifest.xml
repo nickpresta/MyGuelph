@@ -8,8 +8,8 @@
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
     
-
     <application
+        android:name=".MyGuelphApplication" 
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name" >
         <activity
@@ -32,6 +32,28 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".MyGuelphEventsActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:label="@string/app_events"
+            android:icon="@drawable/events" >
+            <intent-filter>
+                <action android:name="android.intent.action.ALL_APPS" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".MyGuelphEventDetailsActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:label="@string/app_events"
+            android:icon="@drawable/events" >
+            <intent-filter>
+                <action android:name="android.intent.action.ALL_APPS" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
             android:name=".MyGuelphMapActivity"
             android:label="@string/app_map"
             android:icon="@drawable/map" >
@@ -41,8 +63,11 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        
+        <activity
+            android:name=".MyGuelphPrefsActivity" />
         <uses-library android:name="com.google.android.maps"/>
     </application>
+    
+        
 
 </manifest>

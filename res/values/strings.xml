@@ -4,26 +4,27 @@
     <string name="app_name">My Guelph</string>
     <string name="app_map">Map</string>
     <string name="app_news">News</string>
+    <string name="app_events">Events</string>
+    <string name="app_login_url">https://www.uoguelph.ca/studentaffairs/reg/login.cfm</string>
         
     <!-- For the Global Menubar. -->
     <string name="menu_about">About</string>
     <string name="about_title">About My Guelph</string>
     <string name="about_contents">My Guelph by Nick Presta\nnick@nickpresta.ca</string>
     
-    <!-- For the Main Menubar. -->
+    <!-- For the Menubars. -->
     <string name="menu_preferences">Preferences</string>
-    
-    <!-- For the News Menubar. -->
     <string name="menu_refresh">Refresh</string>
+    <string name="menu_open_in_browser">Open in Browser</string>
     
     <!-- For the Main Activity. -->
     <string name="main_news">News</string>
     <string name="main_news_description">Campus News</string>
     <string name="main_map">Map</string>
     <string name="main_map_description">Campus Map</string>
-    <string name="main_directory">Directory</string>
-    <string name="main_directory_description">Campus Directory</string>
-    <string name="main_links">Important Links</string>
+    <string name="main_events">Events</string>
+    <string name="main_events_description">Events</string>
+    <string name="main_links">Links</string>
     <string name="main_links_description">Campus Links</string>
     
     <!-- For the News Activity -->
@@ -34,6 +35,15 @@
     <string name="news_tab_main">Main</string>
     <string name="news_tab_atguelph">At Guelph</string>
     <string name="news_tab_gryphons">Gryphons</string>
+    
+    <!-- For the Events Activity -->
+    <string name="guelph_events_main_feed_url">http://www.uoguelph.ca/studentaffairs/reg/rssfeed.cfm</string>
+    
+     <!-- For the Event Details Activity -->
+    <string name="event_details_register">Register</string>
+    <string name="event_details_register_link">https://www.uoguelph.ca/studentaffairs/reg/user.cfm</string>
+    <string name="event_details_register_true">Currently Registered</string>
+    <string name="event_details_register_false">Register</string>
     
     <!-- For the Map Activity. -->
     <string name="search_button">Search</string>
