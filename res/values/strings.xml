@@ -6,6 +6,14 @@
     <string name="app_news">News</string>
     <string name="app_events">Events</string>
     <string name="app_login_url">https://www.uoguelph.ca/studentaffairs/reg/login.cfm</string>
+    
+    <!-- Preferences -->
+    <string name="prefs_login_status">Login Status</string>
+    <string name="prefs_username_title">Username</string>
+    <string name="prefs_username_summary">Example: johndoe</string>
+    <string name="prefs_username_dialog">Enter your username</string>
+        <string name="prefs_password_title">Password</string>
+    <string name="prefs_password_dialog">Enter your password</string>
         
     <!-- For the Global Menubar. -->
     <string name="menu_about">About</string>

@@ -3,19 +3,25 @@
     android:title="Preferences">
   <PreferenceCategory
      android:title="Central Login Account">
+     
+    <EditTextPreference
+        android:key="prefs_login_status"
+        android:title="@string/prefs_login_status"
+        android:enabled="false"
+    />
 
     <EditTextPreference
         android:key="prefs_username"
-        android:title="Username"
-        android:summary="example: johndoe"
-        android:dialogTitle="Enter your username"
+        android:title="@string/prefs_username_title"
+        android:summary="@string/prefs_username_summary"
+        android:dialogTitle="@string/prefs_username_dialog"
     />
     
     <EditTextPreference
         android:key="prefs_password"
-        android:title="Password"
+        android:title="@string/prefs_password_title"
         android:summary=""
-        android:dialogTitle="Enter your password"
+        android:dialogTitle="@string/prefs_password_dialog"
         android:inputType="textPassword"
     />
      

@@ -23,6 +23,7 @@ public class MyGuelphEventDetailsActivity extends Activity {
     private TextView mDescription;
     private TextView mDate;
     private TextView mTime;
+    private TextView mLocation;
     private Button mRegistered;
 
     @Override
@@ -38,6 +39,7 @@ public class MyGuelphEventDetailsActivity extends Activity {
         mDescription = (TextView) findViewById(R.id.eventDescription);
         mDate = (TextView) findViewById(R.id.eventDate);
         mTime = (TextView) findViewById(R.id.eventTime);
+        mLocation = (TextView) findViewById(R.id.eventLocation);
         mRegistered = (Button) findViewById(R.id.eventRegisterButton);
 
         TextView title = (TextView) findViewById(R.id.eventTitle);
@@ -100,6 +102,8 @@ public class MyGuelphEventDetailsActivity extends Activity {
                     });
             AlertDialog alert = builder.create();
             alert.show();
+        } else {
+            promptRegister();
         }
     }
 
@@ -149,6 +153,10 @@ public class MyGuelphEventDetailsActivity extends Activity {
 
     public void setTime(String time) {
         mTime.setText("Time: " + time);
+    }
+
+    public void setLocation(String location) {
+        mLocation.setText("Location: " + location);
     }
 
     public void setRegistered(boolean registered) {

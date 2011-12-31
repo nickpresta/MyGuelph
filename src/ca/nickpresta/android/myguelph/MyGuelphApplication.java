@@ -2,7 +2,6 @@
 package ca.nickpresta.android.myguelph;
 
 import org.apache.http.HttpResponse;
-import org.apache.http.HttpStatus;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
@@ -15,10 +14,13 @@ import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
+import android.util.Log;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class MyGuelphApplication extends Application {
 
@@ -44,7 +46,7 @@ public class MyGuelphApplication extends Application {
         String password = prefs.getString("prefs_password", "NULL");
 
         // User hasn't entered credentials yet
-        if (username.equals("NULL")) {
+        if (username.equals("NULL") || username.isEmpty()) {
             mLoggedIn = false;
             return false;
         }
@@ -53,24 +55,34 @@ public class MyGuelphApplication extends Application {
         nameValuePair.add(new BasicNameValuePair("clogin", username));
         nameValuePair.add(new BasicNameValuePair("password", password));
 
+        InputStream inputStream = null;
+        String content = "";
         try {
             httpPost.setEntity(new UrlEncodedFormEntity(nameValuePair));
             result = getDefaultHttpClient().execute(httpPost);
-            result.getEntity().consumeContent();
+            inputStream = result.getEntity().getContent();
         } catch (ClientProtocolException e) {
             // TODO: Log this
         } catch (IOException e) {
             // TODO: Log this
         }
 
-        if (result != null && result.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
-            mLoggedIn = true;
-            return true;
-        } else {
-            mLoggedIn = false;
-            return false;
+        if (inputStream != null) {
+            content = convertStreamToString(inputStream);
         }
 
+        Log.i("Login", content);
+
+        if (content.contains("You specified the incorrect password") ||
+                content.contains("Specified user not found")) {
+            mLoggedIn = false;
+            return false;
+        } else if (content.contains("My Event Registrations")) {
+            mLoggedIn = true;
+            return true;
+        }
+
+        return false;
     }
 
     public DefaultHttpClient getDefaultHttpClient() {
@@ -87,5 +99,9 @@ public class MyGuelphApplication extends Application {
 
     public void setLoggedIn(boolean loggedIn) {
         mLoggedIn = loggedIn;
+    }
+
+    private String convertStreamToString(InputStream inputStream) {
+        return new Scanner(inputStream).useDelimiter("\\A").next();
     }
 }

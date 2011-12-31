@@ -81,6 +81,11 @@ public class MyGuelphEventDetailsAsyncTask extends AsyncTask<String, Void, Docum
             Element timeRow = result.getElementsContainingOwnText("Time:").select("strong").first();
             Element time = timeRow.parent().parent().nextElementSibling();
             ((MyGuelphEventDetailsActivity) mParentActivity).setTime(time.text());
+
+            Element locationRow = result.getElementsContainingOwnText("Location:").select("strong")
+                    .first();
+            Element location = locationRow.parent().parent().nextElementSibling();
+            ((MyGuelphEventDetailsActivity) mParentActivity).setLocation(location.text());
         }
 
     }
