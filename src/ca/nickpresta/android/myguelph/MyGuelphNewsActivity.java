@@ -6,7 +6,6 @@ import nl.matshofman.saxrssreader.RssItem;
 
 import android.app.TabActivity;
 import android.content.Context;
-import android.content.res.Configuration;
 import android.os.Bundle;
 import android.text.Html;
 import android.text.method.LinkMovementMethod;
@@ -158,12 +157,6 @@ public class MyGuelphNewsActivity extends TabActivity {
     }
 
     @Override
-    public void onConfigurationChanged(Configuration newConfig) {
-        super.onConfigurationChanged(newConfig);
-        setContentView(R.layout.news);
-    }
-
-    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.refreshmenu, menu);
@@ -203,9 +196,9 @@ public class MyGuelphNewsActivity extends TabActivity {
 
             RssItem i = items.get(position);
             if (i != null) {
-                TextView title = (TextView) view.findViewById(R.id.title);
+                TextView title = (TextView) view.findViewById(R.id.news_item_title);
                 title.setMovementMethod(LinkMovementMethod.getInstance());
-                TextView date = (TextView) view.findViewById(R.id.date);
+                TextView date = (TextView) view.findViewById(R.id.news_item_date);
                 if (title != null) {
                     if (i.getLink() != null) {
                         String link = "<a href='" + i.getLink() + "'>" + i.getTitle() + "</a>";

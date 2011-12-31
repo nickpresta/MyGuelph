@@ -1,0 +1,18 @@
+<?xml version="1.0" ?>
+<websites>
+    <website>
+        <address>http://www.uoguelph.ca/ccs/</address>
+        <title>Computing and Communication Services (CCS)</title>
+        <description>IT Help, communication services, and technical support.</description>
+    </website>
+    <website>
+        <address>http://www.cecs.uoguelph.ca/</address>
+        <title>Co-op Education and Career Services (CECS)</title>
+        <description>Find jobs, register for events, cover letter/resume writing tips.</description>
+    </website>
+    <website>
+        <address>http://www.alumni.uoguelph.ca/</address>
+        <title>Alumni &amp; Friends</title>
+        <description>Stay connected, services and benefits, alumni email.</description>
+    </website>
+</websites>

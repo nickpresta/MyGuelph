@@ -4,7 +4,7 @@
 	<classpathentry kind="src" path="gen"/>
 	<classpathentry kind="con" path="com.android.ide.eclipse.adt.ANDROID_FRAMEWORK"/>
 	<classpathentry kind="con" path="com.android.ide.eclipse.adt.LIBRARIES"/>
-  <!-- <classpathentry kind="lib" path="/home/nickp/workspace/MyGuelph/lib/jsoup-1.6.1.jar"/> -->
-  <classpathentry kind="lib" path="lib/jsoup-1.6.1.jar"/>
+	<classpathentry kind="lib" path="lib/jsoup-1.6.1.jar"/>
+	<classpathentry kind="lib" path="/home/nickp/workspace/MyGuelph/lib/bugsense-trace-1-1.jar"/>
 	<classpathentry kind="output" path="bin/classes"/>
 </classpath>

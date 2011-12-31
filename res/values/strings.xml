@@ -5,6 +5,7 @@
     <string name="app_map">Map</string>
     <string name="app_news">News</string>
     <string name="app_events">Events</string>
+    <string name="app_info">Information</string>
     <string name="app_login_url">https://www.uoguelph.ca/studentaffairs/reg/login.cfm</string>
     
     <!-- Preferences -->
@@ -32,8 +33,8 @@
     <string name="main_map_description">Campus Map</string>
     <string name="main_events">Events</string>
     <string name="main_events_description">Events</string>
-    <string name="main_links">Links</string>
-    <string name="main_links_description">Campus Links</string>
+    <string name="main_info">Information</string>
+    <string name="main_info_description">University Information</string>
     
     <!-- For the News Activity -->
     <string name="guelph_news_main_feed_url">http://feeds.feedburner.com/uoguelph</string>
@@ -43,6 +44,10 @@
     <string name="news_tab_main">Main</string>
     <string name="news_tab_atguelph">At Guelph</string>
     <string name="news_tab_gryphons">Gryphons</string>
+    
+    <!-- For the Info Activity -->
+    <string name="info_tab_core">Main</string>
+    <string name="info_tab_secondary">Other</string>
     
     <!-- For the Events Activity -->
     <string name="guelph_events_main_feed_url">http://www.uoguelph.ca/studentaffairs/reg/rssfeed.cfm</string>

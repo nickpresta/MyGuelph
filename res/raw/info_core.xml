@@ -1,0 +1,33 @@
+<?xml version="1.0" ?>
+<websites>
+    <website>
+        <address>https://webadvisor.uoguelph.ca/</address>
+        <title>WebAdvisor</title>
+        <description>The place to register for courses, view your schedule and grades, and pay your tuition.</description>
+    </website>
+    <website>
+        <address>http://www.uoguelph.ca/registrar/calendars/</address>
+        <title>Academic Calendars</title>
+        <description>View your academic calendar - required courses, degree requirements, other information.</description>
+    </website>
+    <website>
+        <address>https://courselink.uoguelph.ca/</address>
+        <title>CourseLink</title>
+        <description>Online learning environment for distance education and open learning courses.</description>
+    </website>
+    <website>
+        <address>http://mail.uoguelph.ca</address>
+        <title>GryphMail</title>
+        <description>Webmail.</description>
+    </website>
+    <website>
+        <address>http://www.lib.uoguelph.ca/</address>
+        <title>McLaughlin Library</title>
+        <description>Check out books, attend a seminar, get IT help from CCS.</description>
+    </website>
+    <website>
+        <address>http://www.hospitality.uoguelph.ca/</address>
+        <title>Hospitality Services</title>
+        <description>View your student card meal balance, add money to your card, ingredient lists, etc.</description>
+    </website>
+</websites>

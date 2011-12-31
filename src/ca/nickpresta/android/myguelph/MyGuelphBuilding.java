@@ -1,11 +1,11 @@
 
 package ca.nickpresta.android.myguelph;
 
-public class Building {
+public class MyGuelphBuilding {
     private final String mBuildingCode;
     private final String mBuildingName;
 
-    public Building(String code, String name) {
+    public MyGuelphBuilding(String code, String name) {
         mBuildingCode = code;
         mBuildingName = name;
     }

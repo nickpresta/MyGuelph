@@ -70,14 +70,14 @@
             android:src="@drawable/map" />
         
         <ImageView
-            android:contentDescription="@string/main_links_description"
+            android:contentDescription="@string/main_info_description"
             android:layout_gravity="center_horizontal"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:id="@+id/mainImageLinks"
             android:layout_height="wrap_content"
             android:onClick="displayLinks"
-            android:src="@drawable/links" />
+            android:src="@drawable/info" />
 
         </TableRow>
         
@@ -97,7 +97,7 @@
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
             android:layout_weight="1"
-            android:text="@string/main_links" />
+            android:text="@string/main_info" />
 
     </TableRow>
 

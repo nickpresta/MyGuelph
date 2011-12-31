@@ -27,7 +27,7 @@ public class MyGuelphMapActivity extends MapActivity implements LocationListener
 
     private MapView mMap;
     private MapController mMapController;
-    private ArrayList<Building> mBuildingsList;
+    private ArrayList<MyGuelphBuilding> mBuildingsList;
     private ProgressDialog mProgressDialog;
 
     private LocationManager mLocationManager;
@@ -44,15 +44,15 @@ public class MyGuelphMapActivity extends MapActivity implements LocationListener
         mMap = (MapView) this.findViewById(R.id.mapview);
         mMapController = mMap.getController();
 
-        mBuildingsList = new ArrayList<Building>();
+        mBuildingsList = new ArrayList<MyGuelphBuilding>();
 
         String[] buildings = getResources().getStringArray(R.array.buildings_array);
         String[] building_codes = getResources().getStringArray(R.array.buildings_short_array);
         for (int i = 0; i < buildings.length; i++) {
-            mBuildingsList.add(new Building(building_codes[i], buildings[i]));
+            mBuildingsList.add(new MyGuelphBuilding(building_codes[i], buildings[i]));
         }
 
-        ArrayAdapter<Building> adapter = new ArrayAdapter<Building>(this,
+        ArrayAdapter<MyGuelphBuilding> adapter = new ArrayAdapter<MyGuelphBuilding>(this,
                 android.R.layout.simple_dropdown_item_1line, mBuildingsList);
         final AutoCompleteTextView textView =
                 (AutoCompleteTextView) findViewById(R.id.autoCompleteTextView);
@@ -61,7 +61,7 @@ public class MyGuelphMapActivity extends MapActivity implements LocationListener
 
             @Override
             public void onItemClick(AdapterView<?> listView, View view, int position, long id) {
-                Building building = (Building) listView.getItemAtPosition(position);
+                MyGuelphBuilding building = (MyGuelphBuilding) listView.getItemAtPosition(position);
                 textView.setText(building.getBuildingName());
             }
 

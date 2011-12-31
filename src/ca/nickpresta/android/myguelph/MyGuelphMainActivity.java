@@ -1,13 +1,14 @@
 
 package ca.nickpresta.android.myguelph;
 
+import com.bugsense.trace.BugSenseHandler;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
 
 public class MyGuelphMainActivity extends Activity {
 
@@ -15,6 +16,8 @@ public class MyGuelphMainActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
+
+        BugSenseHandler.setup(this, "19b97c33");
     }
 
     public void displayNews(View view) {
@@ -33,7 +36,8 @@ public class MyGuelphMainActivity extends Activity {
     }
 
     public void displayLinks(View view) {
-        Toast.makeText(getApplicationContext(), "Links!", Toast.LENGTH_SHORT).show();
+        Intent infoIntent = new Intent(view.getContext(), MyGuelphInfoActivity.class);
+        startActivity(infoIntent);
     }
 
     @Override
