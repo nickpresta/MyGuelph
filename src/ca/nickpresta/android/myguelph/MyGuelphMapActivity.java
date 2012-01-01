@@ -8,10 +8,12 @@ import com.google.android.maps.MapView;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -38,6 +40,16 @@ public class MyGuelphMapActivity extends MapActivity implements LocationListener
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.map);
+
+        mLocationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+
+        MyGuelphApplication application = (MyGuelphApplication) getApplication();
+        if (!application.isGpsAvailable()) {
+            application.redirectToIntentOrHome(this,
+                    getString(R.string.missing_gps_connection), new Intent(
+                            Settings.ACTION_LOCATION_SOURCE_SETTINGS));
+            return;
+        }
 
         startLocationPoll();
 
@@ -105,6 +117,13 @@ public class MyGuelphMapActivity extends MapActivity implements LocationListener
     @Override
     protected void onResume() {
         super.onResume();
+        MyGuelphApplication application = (MyGuelphApplication) getApplication();
+        if (!application.isGpsAvailable()) {
+            application.redirectToIntentOrHome(this,
+                    getString(R.string.missing_gps_connection), new Intent(
+                            Settings.ACTION_LOCATION_SOURCE_SETTINGS));
+            return;
+        }
         mLocationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 5000, 1, this);
     }
 
@@ -116,8 +135,6 @@ public class MyGuelphMapActivity extends MapActivity implements LocationListener
     }
 
     private void startLocationPoll() {
-        mLocationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-
         mLocationManager.getProvider(LocationManager.GPS_PROVIDER);
         mLocationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 5000, 1, this);
 

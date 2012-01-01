@@ -7,6 +7,8 @@
     <string name="app_events">Events</string>
     <string name="app_info">Information</string>
     <string name="app_login_url">https://www.uoguelph.ca/studentaffairs/reg/login.cfm</string>
+    <string name="missing_network_connection">No network connection detected (WiFi or Mobile). You need a network connection to proceed.</string>
+    <string name="missing_gps_connection">No GPS connection detected. You need a GPS connection to proceed.</string>
     
     <!-- Preferences -->
     <string name="prefs_login_status">Login Status</string>

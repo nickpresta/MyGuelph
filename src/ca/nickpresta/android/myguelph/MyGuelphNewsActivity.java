@@ -6,7 +6,9 @@ import nl.matshofman.saxrssreader.RssItem;
 
 import android.app.TabActivity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.text.Html;
 import android.text.method.LinkMovementMethod;
 import android.util.AttributeSet;
@@ -41,6 +43,14 @@ public class MyGuelphNewsActivity extends TabActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.news);
+
+        MyGuelphApplication application = (MyGuelphApplication) getApplication();
+        if (!application.isNetworkAvailable()) {
+            application.redirectToIntentOrHome(this,
+                    getString(R.string.missing_network_connection), new Intent(
+                            Settings.ACTION_SETTINGS));
+            return;
+        }
 
         // Main news
         ListView mainListView = (ListView) findViewById(R.id.main_list);
@@ -153,6 +163,17 @@ public class MyGuelphNewsActivity extends TabActivity {
                 return true;
             }
             return super.onInterceptTouchEvent(ev);
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        MyGuelphApplication application = (MyGuelphApplication) getApplication();
+        if (!application.isNetworkAvailable()) {
+            application.redirectToIntentOrHome(this,
+                    getString(R.string.missing_network_connection), new Intent(
+                            Settings.ACTION_SETTINGS));
         }
     }
 

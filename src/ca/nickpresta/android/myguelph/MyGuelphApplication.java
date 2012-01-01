@@ -10,9 +10,16 @@ import org.apache.http.impl.client.BasicCookieStore;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 
+import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.Application;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.location.LocationManager;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.preference.PreferenceManager;
 import android.util.Log;
 
@@ -85,6 +92,26 @@ public class MyGuelphApplication extends Application {
         return false;
     }
 
+    public void redirectToIntentOrHome(final Context context, String message, final Intent intent) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        builder.setMessage(message)
+                .setCancelable(false)
+                .setPositiveButton("Configure", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int id) {
+                        context.startActivity(intent);
+                    }
+                })
+                .setNegativeButton("Go back", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int id) {
+                        ((Activity) context).finish();
+                    }
+                });
+        AlertDialog alert = builder.create();
+        alert.show();
+    }
+
     public DefaultHttpClient getDefaultHttpClient() {
         return mHttpClient;
     }
@@ -99,6 +126,19 @@ public class MyGuelphApplication extends Application {
 
     public void setLoggedIn(boolean loggedIn) {
         mLoggedIn = loggedIn;
+    }
+
+    public boolean isNetworkAvailable() {
+        ConnectivityManager connectivityManager =
+                (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+        return activeNetworkInfo != null;
+    }
+
+    public boolean isGpsAvailable() {
+        LocationManager locationManager =
+                (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
     }
 
     private String convertStreamToString(InputStream inputStream) {

@@ -8,6 +8,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -32,6 +33,14 @@ public class MyGuelphEventsActivity extends ListActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.events);
+
+        MyGuelphApplication application = (MyGuelphApplication) getApplication();
+        if (!application.isNetworkAvailable()) {
+            application.redirectToIntentOrHome(this,
+                    getString(R.string.missing_network_connection), new Intent(
+                            Settings.ACTION_SETTINGS));
+            return;
+        }
 
         ListView listView = getListView();
 
@@ -74,6 +83,17 @@ public class MyGuelphEventsActivity extends ListActivity {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        MyGuelphApplication application = (MyGuelphApplication) getApplication();
+        if (!application.isNetworkAvailable()) {
+            application.redirectToIntentOrHome(this,
+                    getString(R.string.missing_network_connection),
+                    new Intent(Settings.ACTION_SETTINGS));
+        }
     }
 
     private class MyGuelphEventsCustomAdapter extends ArrayAdapter<RssItem> {
