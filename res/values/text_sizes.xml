@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="map_text_size">16sp</dimen>
+    <dimen name="map_text_margins">3sp</dimen>
+</resources>

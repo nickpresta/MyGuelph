@@ -27,6 +27,7 @@
     <string name="menu_preferences">Preferences</string>
     <string name="menu_refresh">Refresh</string>
     <string name="menu_open_in_browser">Open in Browser</string>
+    <string name="menu_map_clear">Clear Markers</string>
     
     <!-- For the Main Activity. -->
     <string name="main_news">News</string>
@@ -64,14 +65,14 @@
     <string name="search_button">Search</string>
     <!--  The building names on campus. -->
     <string-array name="buildings_array">
-        <item>17 University (Family &amp; Consumer Studies)</item>
+        <item>17 University (Family and Consumer Studies)</item>
         <item>25 University (Real Estate Division)</item>
         <item>575 Gordon (Residence)</item>
         <item>A.A. Thornbrough Building</item>
         <item>Alumni House</item>
         <item>Alumni Stadium</item>
         <item>Animal Biotechnology Embryo laboratory</item>
-        <item>Animal Science &amp; Nutrition</item>
+        <item>Animal Science and Nutrition</item>
         <item>Arboretum Information Booth</item>
         <item>Athletics Centre (W.F. Mitchell)</item>
         <item>Aviary</item>
@@ -87,10 +88,10 @@
         <item>Central Utilities Plant</item>
         <item>CESA Building</item>
         <item>Chemistry</item>
-        <item>Child Care &amp; Learning Centre</item>
+        <item>Child Care and Learning Centre</item>
         <item>Cold Storage laboratory</item>
         <item>College Ave. Family Residence</item>
-        <item>Computing &amp; Communications Services Building</item>
+        <item>Computing and Communications Services Building</item>
         <item>The Conservatory</item>
         <item>Creelman Hall</item>
         <item>CRIFS Building</item>

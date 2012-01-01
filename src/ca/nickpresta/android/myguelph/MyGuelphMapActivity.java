@@ -5,43 +5,46 @@ import com.google.android.maps.GeoPoint;
 import com.google.android.maps.MapActivity;
 import com.google.android.maps.MapController;
 import com.google.android.maps.MapView;
+import com.google.android.maps.MyLocationOverlay;
+import com.google.android.maps.Overlay;
+import com.google.android.maps.OverlayItem;
 
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.Intent;
-import android.location.Location;
-import android.location.LocationListener;
-import android.location.LocationManager;
+import android.location.Address;
+import android.location.Geocoder;
 import android.os.Bundle;
 import android.provider.Settings;
+import android.view.KeyEvent;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
+import android.widget.TextView;
+import android.widget.TextView.OnEditorActionListener;
 import android.widget.Toast;
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
 
-public class MyGuelphMapActivity extends MapActivity implements LocationListener {
+public class MyGuelphMapActivity extends MapActivity {
 
     private MapView mMap;
     private MapController mMapController;
+    private MyLocationOverlay mMyLocationOverlay;
     private ArrayList<MyGuelphBuilding> mBuildingsList;
-    private ProgressDialog mProgressDialog;
 
-    private LocationManager mLocationManager;
-    private Location mPresentLocation;
-
-    /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.map);
-
-        mLocationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 
         MyGuelphApplication application = (MyGuelphApplication) getApplication();
         if (!application.isGpsAvailable()) {
@@ -51,10 +54,11 @@ public class MyGuelphMapActivity extends MapActivity implements LocationListener
             return;
         }
 
-        startLocationPoll();
-
         mMap = (MapView) this.findViewById(R.id.mapview);
+        mMap.setBuiltInZoomControls(true);
         mMapController = mMap.getController();
+
+        initMap();
 
         mBuildingsList = new ArrayList<MyGuelphBuilding>();
 
@@ -69,6 +73,17 @@ public class MyGuelphMapActivity extends MapActivity implements LocationListener
         final AutoCompleteTextView textView =
                 (AutoCompleteTextView) findViewById(R.id.autoCompleteTextView);
         textView.setAdapter(adapter);
+        textView.setOnEditorActionListener(new OnEditorActionListener() {
+
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+                    performSearch(v);
+                    return true;
+                }
+                return false;
+            }
+        });
         textView.setOnItemClickListener(new OnItemClickListener() {
 
             @Override
@@ -96,22 +111,23 @@ public class MyGuelphMapActivity extends MapActivity implements LocationListener
         return false;
     }
 
+    private void initMap() {
+        mMyLocationOverlay = new MyLocationOverlay(this, mMap);
+        mMap.getOverlays().add(mMyLocationOverlay);
+        mMyLocationOverlay.enableMyLocation();
+        mMyLocationOverlay.runOnFirstFix(new Runnable() {
+
+            @Override
+            public void run() {
+                mMapController.animateTo(mMyLocationOverlay.getMyLocation());
+            }
+        });
+    }
+
     @Override
     protected void onPause() {
         super.onPause();
-        mLocationManager.removeUpdates(this);
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        mLocationManager.removeUpdates(this);
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        mLocationManager.removeUpdates(this);
+        mMyLocationOverlay.disableMyLocation();
     }
 
     @Override
@@ -124,55 +140,84 @@ public class MyGuelphMapActivity extends MapActivity implements LocationListener
                             Settings.ACTION_LOCATION_SOURCE_SETTINGS));
             return;
         }
-        mLocationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 5000, 1, this);
+        mMyLocationOverlay.enableMyLocation();
     }
 
     public void performSearch(View view) {
         // do search
-        mProgressDialog = ProgressDialog.show(MyGuelphMapActivity.this, "",
-                "Finding building. Please wait...", true);
-        mProgressDialog.dismiss();
+        ProgressDialog progressDialog = ProgressDialog.show(MyGuelphMapActivity.this, "Title",
+                "Finding building. Please wait...", false);
+        progressDialog.show();
+        AutoCompleteTextView searchField = (AutoCompleteTextView) findViewById(R.id.autoCompleteTextView);
+        String searchTerm = searchField.getText().toString().trim();
+        if (searchTerm.isEmpty()) {
+            searchTerm = "University Centre";
+        }
+        Geocoder geocoder = new Geocoder(this, Locale.getDefault());
+        try {
+            List<Address> addresses = geocoder.getFromLocationName(
+                    searchTerm + ", Guelph, Ontario, Canada", 5);
+            if (addresses.size() > 0) {
+                GeoPoint point = new GeoPoint(
+                        (int) (addresses.get(0).getLatitude() * 1E6),
+                        (int) (addresses.get(0).getLongitude() * 1E6));
+                MyGuelphItemizedOverlay overlay = new MyGuelphItemizedOverlay(getResources()
+                        .getDrawable(android.R.drawable.star_on), this);
+                OverlayItem overlayItem = new OverlayItem(point, searchTerm, "");
+                overlay.addOverlay(overlayItem);
+                mMap.getOverlays().add(overlay);
+
+                int maxLatitude = Math.max(point.getLatitudeE6(), mMyLocationOverlay
+                        .getMyLocation().getLatitudeE6());
+                int minLatitude = Math.min(point.getLatitudeE6(), mMyLocationOverlay
+                        .getMyLocation().getLatitudeE6());
+                int maxLongitude = Math.max(point.getLongitudeE6(), mMyLocationOverlay
+                        .getMyLocation().getLongitudeE6());
+                int minLongitude = Math.min(point.getLongitudeE6(), mMyLocationOverlay
+                        .getMyLocation().getLongitudeE6());
+
+                mMapController.animateTo(new GeoPoint(
+                        (maxLatitude + minLatitude) / 2,
+                        (maxLongitude + minLongitude) / 2));
+                mMapController.zoomToSpan(Math.abs(maxLatitude - minLatitude),
+                        Math.abs(maxLongitude - minLongitude));
+
+                mMap.invalidate();
+            } else {
+                Toast.makeText(this, "Could not find " + searchTerm + " in Guelph.",
+                        Toast.LENGTH_LONG).show();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        progressDialog.dismiss();
     }
 
-    private void startLocationPoll() {
-        mLocationManager.getProvider(LocationManager.GPS_PROVIDER);
-        mLocationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 5000, 1, this);
-
-        mLocationManager.getProviders(true);
-        mLocationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-        mLocationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
-        mLocationManager.getLastKnownLocation(LocationManager.PASSIVE_PROVIDER);
-    }
-
-    @Override
-    public void onLocationChanged(Location location) {
-        mPresentLocation = location;
-        Toast.makeText(getApplicationContext(),
-                "Current location is " + mPresentLocation.getLatitude() + ", "
-                        + mPresentLocation.getLongitude(), Toast.LENGTH_LONG).show();
-    }
-
-    @Override
-    public void onProviderDisabled(String provider) {
-    }
-
-    @Override
-    public void onProviderEnabled(String provider) {
-    }
-
-    @Override
-    public void onStatusChanged(String provider, int status, Bundle extras) {
+    public void performClear() {
+        for (Overlay overlay : mMap.getOverlays()) {
+            if (overlay instanceof MyGuelphItemizedOverlay) {
+                ((MyGuelphItemizedOverlay) overlay).clear();
+            }
+        }
+        mMap.invalidate();
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        MyGuelphMenu.onCreateOptionsMenu(menu, getMenuInflater());
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.mapmenu, menu);
+        MyGuelphMenu.onCreateOptionsMenu(menu, inflater);
         return super.onCreateOptionsMenu(menu);
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        return MyGuelphMenu.onOptionsItemSelected(item, this);
+        MyGuelphMenu.onOptionsItemSelected(item, this);
+        int itemId = item.getItemId();
+        if (itemId == R.id.menuMapClear) {
+            performClear();
+        }
+        return super.onOptionsItemSelected(item);
     }
 
 }

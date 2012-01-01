@@ -21,7 +21,8 @@
                 android:layout_gravity="fill_horizontal"
                 android:layout_weight="1"
                 android:completionThreshold="2"
-                android:singleLine="true" >
+                android:singleLine="true"
+                android:imeOptions="actionSearch" >
 
                 <requestFocus />
             </AutoCompleteTextView>
