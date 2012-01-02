@@ -1,6 +1,8 @@
 
 package ca.nickpresta.android.myguelph;
 
+import ca.nickpresta.android.myguelph.MyGuelphApplication.LoginType;
+
 import org.apache.http.cookie.Cookie;
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;
@@ -41,7 +43,7 @@ public class MyGuelphEventDetailsAsyncTask extends AsyncTask<String, Void, Docum
         MyGuelphApplication application = (MyGuelphApplication) ((MyGuelphEventDetailsActivity) mParentActivity)
                 .getApplication();
 
-        application.login(mParentActivity);
+        application.login(mParentActivity, LoginType.EVENTS);
 
         List<Cookie> cookies = application.getDefaultHttpClient().getCookieStore().getCookies();
 

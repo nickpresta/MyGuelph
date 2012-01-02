@@ -81,7 +81,7 @@ public class MyGuelphEventDetailsActivity extends Activity {
 
     private void checkLogin() {
         MyGuelphApplication application = (MyGuelphApplication) this.getApplication();
-        if (!application.getLoggedIn()) {
+        if (!application.hasCredentials(this)) {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setMessage("You need to set up your username and password")
                     .setCancelable(false)

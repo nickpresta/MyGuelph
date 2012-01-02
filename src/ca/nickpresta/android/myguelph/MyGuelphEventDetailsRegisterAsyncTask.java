@@ -1,6 +1,8 @@
 
 package ca.nickpresta.android.myguelph;
 
+import ca.nickpresta.android.myguelph.MyGuelphApplication.LoginType;
+
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
 import org.apache.http.NameValuePair;
@@ -46,7 +48,7 @@ public class MyGuelphEventDetailsRegisterAsyncTask extends AsyncTask<String, Voi
 
         MyGuelphApplication application = (MyGuelphApplication) ((MyGuelphEventDetailsActivity) mParentActivity)
                 .getApplication();
-        boolean loggedIn = application.login(mParentActivity);
+        boolean loggedIn = application.login(mParentActivity, LoginType.EVENTS);
         if (!loggedIn) {
             return result;
         }

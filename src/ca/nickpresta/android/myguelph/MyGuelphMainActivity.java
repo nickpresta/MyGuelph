@@ -40,6 +40,16 @@ public class MyGuelphMainActivity extends Activity {
         startActivity(infoIntent);
     }
 
+    public void displayLibrary(View view) {
+        Intent libraryIntent = new Intent(view.getContext(), MyGuelphLibraryActivity.class);
+        startActivity(libraryIntent);
+    }
+
+    public void displayBalance(View view) {
+        Intent balanceIntent = new Intent(view.getContext(), MyGuelphBalanceActivity.class);
+        startActivity(balanceIntent);
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MyGuelphMenu.onCreateOptionsMenu(menu, getMenuInflater());

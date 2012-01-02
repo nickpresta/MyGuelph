@@ -2,11 +2,12 @@
 <resources>
     <!-- General -->
     <string name="app_name">My Guelph</string>
-    <string name="app_map">Map</string>
-    <string name="app_news">News</string>
-    <string name="app_events">Events</string>
-    <string name="app_info">Information</string>
-    <string name="app_login_url">https://www.uoguelph.ca/studentaffairs/reg/login.cfm</string>
+    <string name="app_map">Campus Map</string>
+    <string name="app_news">Campus News</string>
+    <string name="app_events">Campus Events</string>
+    <string name="app_info">Important Information</string>
+    <string name="app_library">Campus Library</string>
+    <string name="app_balance">Student Card Balance</string>
     <string name="missing_network_connection">No network connection detected (WiFi or Mobile). You need a network connection to proceed.</string>
     <string name="missing_gps_connection">No GPS connection detected. You need a GPS connection to proceed.</string>
     
@@ -38,6 +39,19 @@
     <string name="main_events_description">Events</string>
     <string name="main_info">Information</string>
     <string name="main_info_description">University Information</string>
+    <string name="main_library">Library</string>
+    <string name="main_library_description">Access your Library account</string>
+    <string name="main_balance">Meal Card Balance</string>
+    <string name="main_balance_description">View your meal card balance</string>
+    
+    <!-- For the Library Activity -->
+    <string name="library_login_url">https://insite.lib.uoguelph.ca/trellisAuthenticate/trellisLogin.cfm?PAGE=pbPatron&amp;PID=myguelph&amp;SEQ=20120101000000&amp;proxy=false</string>
+    <string name="library_account_overview_url">http://trellis3.tug-libraries.on.ca/cgi-bin/Pwebrecon.cgi</string>
+    
+    <!-- For the Balance Activity -->
+    <string name="mealCardBalanceTitle">Current Meal Card Balance</string>
+    <string name="balance_login_url">https://www.hospitality.uoguelph.ca/accountservices/chooseaccount.cfm?action=balance</string>
+    <string name="balance_details_url">https://www.hospitality.uoguelph.ca/accountservices/onlineinquiry.cfm</string>
     
     <!-- For the News Activity -->
     <string name="guelph_news_main_feed_url">http://feeds.feedburner.com/uoguelph</string>
@@ -53,6 +67,7 @@
     <string name="info_tab_secondary">Other</string>
     
     <!-- For the Events Activity -->
+    <string name="events_login_url">https://www.uoguelph.ca/studentaffairs/reg/login.cfm</string>
     <string name="guelph_events_main_feed_url">http://www.uoguelph.ca/studentaffairs/reg/rssfeed.cfm</string>
     
      <!-- For the Event Details Activity -->
