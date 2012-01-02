@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
+    <item android:id="@+id/menuMapSatelliteView"
+        android:title="@string/menu_map_satellite_view"
+        android:checkable="true"
+        android:checked="true" />
     <item android:id="@+id/menuMapClear"
         android:title="@string/menu_map_clear" />
 </menu>

@@ -2,6 +2,8 @@
 package ca.nickpresta.android.myguelph;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.provider.Settings;
@@ -23,6 +25,32 @@ public class MyGuelphBalanceActivity extends Activity {
                     getString(R.string.missing_network_connection), new Intent(
                             Settings.ACTION_SETTINGS));
             return;
+        }
+
+        if (!application.hasCredentials(this)) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setMessage(getString(R.string.missing_credentials))
+                    .setCancelable(false)
+                    .setPositiveButton(getString(R.string.positive_setup),
+                            new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int id) {
+                                    Intent prefsIntent = new Intent(getApplicationContext(),
+                                            MyGuelphPrefsActivity.class);
+                                    startActivity(prefsIntent);
+                                    finish();
+                                }
+                            })
+                    .setNegativeButton(getString(R.string.negative_cancel),
+                            new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int id) {
+                                    dialog.cancel();
+                                    finish();
+                                }
+                            });
+            AlertDialog alert = builder.create();
+            alert.show();
         }
 
         MyGuelphBalanceAsyncTask task = new MyGuelphBalanceAsyncTask(this);

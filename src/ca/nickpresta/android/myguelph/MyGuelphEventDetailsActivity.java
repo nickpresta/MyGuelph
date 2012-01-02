@@ -83,23 +83,25 @@ public class MyGuelphEventDetailsActivity extends Activity {
         MyGuelphApplication application = (MyGuelphApplication) this.getApplication();
         if (!application.hasCredentials(this)) {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setMessage("You need to set up your username and password")
+            builder.setMessage(getString(R.string.missing_credentials))
                     .setCancelable(false)
-                    .setPositiveButton("Set up", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int id) {
-                            Intent prefsIntent = new Intent(getApplicationContext(),
-                                    MyGuelphPrefsActivity.class);
-                            startActivity(prefsIntent);
-                            promptRegister();
-                        }
-                    })
-                    .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int id) {
-                            dialog.cancel();
-                        }
-                    });
+                    .setPositiveButton(getString(R.string.positive_setup),
+                            new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int id) {
+                                    Intent prefsIntent = new Intent(getApplicationContext(),
+                                            MyGuelphPrefsActivity.class);
+                                    startActivity(prefsIntent);
+                                    promptRegister();
+                                }
+                            })
+                    .setNegativeButton(getString(R.string.negative_cancel),
+                            new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int id) {
+                                    dialog.cancel();
+                                }
+                            });
             AlertDialog alert = builder.create();
             alert.show();
         } else {
@@ -109,9 +111,9 @@ public class MyGuelphEventDetailsActivity extends Activity {
 
     private void promptRegister() {
         new AlertDialog.Builder(MyGuelphEventDetailsActivity.this)
-                .setTitle("Are you sure?")
-                .setMessage("Are you sure you want to register?")
-                .setPositiveButton("Register",
+                .setTitle(getString(R.string.register_confirmation))
+                .setMessage(getString(R.string.want_to_register))
+                .setPositiveButton(getString(R.string.positive_register),
                         new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog,
@@ -119,7 +121,7 @@ public class MyGuelphEventDetailsActivity extends Activity {
                                 registerEvent();
                             }
                         })
-                .setNegativeButton("Cancel",
+                .setNegativeButton(getString(R.string.negative_cancel),
                         new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog,

@@ -56,6 +56,7 @@ public class MyGuelphMapActivity extends MapActivity {
 
         mMap = (MapView) this.findViewById(R.id.mapview);
         mMap.setBuiltInZoomControls(true);
+        mMap.setSatellite(true);
         mMapController = mMap.getController();
 
         initMap();
@@ -193,12 +194,24 @@ public class MyGuelphMapActivity extends MapActivity {
         progressDialog.dismiss();
     }
 
-    public void performClear() {
+    private void performClear() {
         for (Overlay overlay : mMap.getOverlays()) {
             if (overlay instanceof MyGuelphItemizedOverlay) {
                 ((MyGuelphItemizedOverlay) overlay).clear();
             }
         }
+        mMap.invalidate();
+    }
+
+    private void toggleView(MenuItem item) {
+        if (item == null) {
+            return;
+        }
+
+        boolean state = !item.isChecked();
+
+        item.setChecked(state);
+        mMap.setSatellite(state);
         mMap.invalidate();
     }
 
@@ -211,11 +224,29 @@ public class MyGuelphMapActivity extends MapActivity {
     }
 
     @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        int SDK_INT = android.os.Build.VERSION.SDK_INT;
+        if (SDK_INT < 11) {
+            // On anything less than Honeycomb, menuItems don't show a checkbox.
+            // So we have to change the title
+            MenuItem item = menu.findItem(R.id.menuMapSatelliteView);
+            if (item.isChecked()) {
+                item.setTitle(getString(R.string.menu_map_map_view));
+            } else {
+                item.setTitle(getString(R.string.menu_map_satellite_view));
+            }
+        }
+        return true;
+    }
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         MyGuelphMenu.onOptionsItemSelected(item, this);
         int itemId = item.getItemId();
         if (itemId == R.id.menuMapClear) {
             performClear();
+        } else if (itemId == R.id.menuMapSatelliteView) {
+            toggleView(item);
         }
         return super.onOptionsItemSelected(item);
     }
