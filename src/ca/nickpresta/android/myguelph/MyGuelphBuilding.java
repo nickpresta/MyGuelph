@@ -1,6 +1,8 @@
 
 package ca.nickpresta.android.myguelph;
 
+import android.text.TextUtils;
+
 public class MyGuelphBuilding {
     private final String mBuildingCode;
     private final String mBuildingName;
@@ -17,7 +19,7 @@ public class MyGuelphBuilding {
     @Override
     public String toString() {
         String outString = "";
-        if (!mBuildingCode.isEmpty()) {
+        if (!TextUtils.isEmpty(mBuildingCode)) {
             outString += mBuildingCode + " - ";
         }
         outString += mBuildingName;

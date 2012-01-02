@@ -15,6 +15,7 @@ import android.location.Address;
 import android.location.Geocoder;
 import android.os.Bundle;
 import android.provider.Settings;
+import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -151,7 +152,7 @@ public class MyGuelphMapActivity extends MapActivity {
         progressDialog.show();
         AutoCompleteTextView searchField = (AutoCompleteTextView) findViewById(R.id.autoCompleteTextView);
         String searchTerm = searchField.getText().toString().trim();
-        if (searchTerm.isEmpty()) {
+        if (TextUtils.isEmpty(searchTerm)) {
             searchTerm = "University Centre";
         }
         Geocoder geocoder = new Geocoder(this, Locale.getDefault());

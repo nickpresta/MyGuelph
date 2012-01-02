@@ -21,6 +21,7 @@ import android.location.LocationManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.preference.PreferenceManager;
+import android.text.TextUtils;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -70,7 +71,7 @@ public class MyGuelphApplication extends Application {
         String password = prefs.getString("prefs_password", "NULL");
 
         // User hasn't entered credentials yet
-        if (username.equals("NULL") || username.isEmpty()) {
+        if (username.equals("NULL") || TextUtils.isEmpty(username)) {
             mLoggedIn = false;
             return false;
         }
@@ -120,7 +121,7 @@ public class MyGuelphApplication extends Application {
         String password = prefs.getString("prefs_password", "NULL");
 
         // User hasn't entered credentials yet
-        if (username.equals("NULL") || username.isEmpty()) {
+        if (username.equals("NULL") || TextUtils.isEmpty(username)) {
             mLoggedIn = false;
             return false;
         }
@@ -176,7 +177,7 @@ public class MyGuelphApplication extends Application {
         String password = prefs.getString("prefs_password", "NULL");
 
         // User hasn't entered credentials yet
-        if (username.equals("NULL") || username.isEmpty()) {
+        if (username.equals("NULL") || TextUtils.isEmpty(username)) {
             mLoggedIn = false;
             return false;
         }
@@ -258,7 +259,7 @@ public class MyGuelphApplication extends Application {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
         String username = prefs.getString("prefs_username", "NULL");
         String password = prefs.getString("prefs_password", "NULL");
-        if (username.equals("NULL") || username.isEmpty() || password.isEmpty()) {
+        if (username.equals("NULL") || TextUtils.isEmpty(username) || TextUtils.isEmpty(password)) {
             return false;
         }
         return true;
