@@ -10,7 +10,6 @@ import android.content.res.Configuration;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.text.Html;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -54,8 +53,6 @@ public class MyGuelphEventsActivity extends ListActivity {
                     new URL(getString(R.string.guelph_events_main_feed_url))
             });
         } catch (MalformedURLException e) {
-            Log.e("MyGuelphEventsActivity", "MalformedURL when parsing feed string.");
-            e.printStackTrace();
         }
     }
 

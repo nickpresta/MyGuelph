@@ -16,7 +16,6 @@ import android.app.ProgressDialog;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.preference.PreferenceManager;
-import android.util.Log;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -84,7 +83,6 @@ public class MyGuelphEventDetailsRegisterAsyncTask extends AsyncTask<String, Voi
     protected void onPostExecute(HttpResponse result) {
         mProgressDialog.cancel();
         if (result != null) {
-            Log.i("Register", "Status = " + result.getStatusLine().getStatusCode());
             if (result != null && result.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
                 ((MyGuelphEventDetailsActivity) mParentActivity).setRegistered(true);
             }

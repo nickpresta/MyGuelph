@@ -13,7 +13,6 @@ import org.jsoup.select.Elements;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.os.AsyncTask;
-import android.util.Log;
 
 import java.io.IOException;
 import java.util.List;
@@ -57,8 +56,6 @@ public class MyGuelphBalanceAsyncTask extends AsyncTask<String, Void, Document> 
             }
             result = connection.get();
         } catch (IOException e) {
-            e.printStackTrace();
-            Log.e("MyGuelphBalanceDetailsActivity", "Could not get balance page using Jsoup.");
         }
 
         return result;
@@ -69,8 +66,6 @@ public class MyGuelphBalanceAsyncTask extends AsyncTask<String, Void, Document> 
         mProgressDialog.cancel();
 
         if (result != null) {
-            // ((MyGuelphBalanceActivity) mParentActivity).setBalance(null);
-            Log.i("MyGuelphBalanceAsyncTask", result.text());
             Elements style2Column = result.select("td.style2");
             if (style2Column.size() > 0) {
                 Element balanceAmountColumn = style2Column.get(0).nextElementSibling();

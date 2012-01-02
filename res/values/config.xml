@@ -2,4 +2,5 @@
     <integer name="fling_animation_duration">350</integer>
     <integer name="http_connection_timeout">3000</integer>
     <integer name="http_socket_timeout">5000</integer>
+    <dimen name="main_app_text_size">16sp</dimen>
 </resources>

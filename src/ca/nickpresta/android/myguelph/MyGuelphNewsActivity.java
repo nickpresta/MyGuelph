@@ -12,7 +12,6 @@ import android.provider.Settings;
 import android.text.Html;
 import android.text.method.LinkMovementMethod;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.GestureDetector;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -100,8 +99,6 @@ public class MyGuelphNewsActivity extends TabActivity {
                             getString(R.string.guelph_news_gryphon_main_feed_url)))
             });
         } catch (MalformedURLException e) {
-            Log.e("MyGuelph", "MalformedURL when parsing main feed string.");
-            e.printStackTrace();
         }
 
     }

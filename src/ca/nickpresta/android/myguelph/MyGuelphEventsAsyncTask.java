@@ -10,7 +10,6 @@ import org.xml.sax.SAXException;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.os.AsyncTask;
-import android.util.Log;
 
 import java.io.IOException;
 import java.net.URL;
@@ -42,11 +41,7 @@ public class MyGuelphEventsAsyncTask extends AsyncTask<URL, Void, ArrayList<RssI
             try {
                 f = RssReader.read(feedUrl, "ISO-8859-1");
             } catch (SAXException e) {
-                e.printStackTrace();
-                Log.i("MyGuelphEventsAsyncTask", "SAXException!");
             } catch (IOException e) {
-                e.printStackTrace();
-                Log.i("MyGuelphEventsAsyncTask", "IOException!");
             }
             if (f != null) {
                 results = f.getRssItems();

@@ -21,7 +21,6 @@ import android.location.LocationManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.preference.PreferenceManager;
-import android.util.Log;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -96,8 +95,6 @@ public class MyGuelphApplication extends Application {
             content = convertStreamToString(inputStream);
         }
 
-        Log.i("EventsLogin", content);
-
         if (content.contains("You specified the incorrect password") ||
                 content.contains("Specified user not found")) {
             mLoggedIn = false;
@@ -155,8 +152,6 @@ public class MyGuelphApplication extends Application {
             content = convertStreamToString(inputStream);
         }
 
-        Log.i("LibraryLogin", content);
-
         if (content.contains("Your user ID / password combination was not found")) {
             mLoggedIn = false;
             return false;
@@ -207,8 +202,6 @@ public class MyGuelphApplication extends Application {
         if (inputStream != null) {
             content = convertStreamToString(inputStream);
         }
-
-        Log.i("BalanceLogin", content);
 
         if (content.contains("Your login information is not valid")) {
             mLoggedIn = false;

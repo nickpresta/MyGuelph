@@ -43,7 +43,8 @@
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
             android:layout_weight="1"
-            android:text="@string/main_news" />
+            android:text="@string/main_news"
+            android:textSize="@dimen/main_app_text_size" />
 
         <TextView
             android:id="@+id/mainEventsTextView"
@@ -51,7 +52,8 @@
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
             android:layout_weight="1"
-            android:text="@string/main_events" />
+            android:text="@string/main_events"
+            android:textSize="@dimen/main_app_text_size" />
         
     </TableRow>
     
@@ -106,7 +108,8 @@
             android:layout_weight="1"
             android:gravity="center_horizontal"
             android:layout_height="wrap_content"
-            android:text="@string/main_map" />
+            android:text="@string/main_map"
+            android:textSize="@dimen/main_app_text_size" />
 
         
         <!-- Commented out. Can't get POST login working...
@@ -125,7 +128,8 @@
             android:layout_weight="1"
             android:gravity="center_horizontal"
             android:layout_height="wrap_content"
-            android:text="@string/main_balance" />
+            android:text="@string/main_balance"
+            android:textSize="@dimen/main_app_text_size" />
 
     </TableRow>
     <!-- End Row 2 -->
@@ -157,7 +161,8 @@
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
             android:layout_weight="1"
-            android:text="@string/main_info" />
+            android:text="@string/main_info"
+            android:textSize="@dimen/main_app_text_size" />
 
     </TableRow>
 

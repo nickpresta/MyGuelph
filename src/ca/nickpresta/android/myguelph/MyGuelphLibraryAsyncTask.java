@@ -11,7 +11,6 @@ import org.jsoup.nodes.Document;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.os.AsyncTask;
-import android.util.Log;
 
 import java.io.IOException;
 import java.util.List;
@@ -52,8 +51,6 @@ public class MyGuelphLibraryAsyncTask extends AsyncTask<String, Void, Document> 
             }
             result = connection.get();
         } catch (IOException e) {
-            e.printStackTrace();
-            Log.e("MyGuelphLibraryDetailsActivity", "Could not get library page using Jsoup.");
         }
 
         return result;

@@ -2,12 +2,12 @@
 <resources>
     <!-- General -->
     <string name="app_name">My Guelph</string>
-    <string name="app_map">Campus Map</string>
-    <string name="app_news">Campus News</string>
-    <string name="app_events">Campus Events</string>
-    <string name="app_info">Important Information</string>
+    <string name="app_map">Map</string>
+    <string name="app_news">News</string>
+    <string name="app_events">Events</string>
+    <string name="app_info">Important Links</string>
     <string name="app_library">Campus Library</string>
-    <string name="app_balance">Student Card Balance</string>
+    <string name="app_balance">Meal Card Balance</string>
     <string name="missing_network_connection">No network connection detected (WiFi or Mobile). You need a network connection to proceed.</string>
     <string name="missing_gps_connection">No GPS connection detected. You need a GPS connection to proceed.</string>
     
@@ -37,7 +37,7 @@
     <string name="main_map_description">Campus Map</string>
     <string name="main_events">Events</string>
     <string name="main_events_description">Events</string>
-    <string name="main_info">Information</string>
+    <string name="main_info">Important Links</string>
     <string name="main_info_description">University Information</string>
     <string name="main_library">Library</string>
     <string name="main_library_description">Access your Library account</string>

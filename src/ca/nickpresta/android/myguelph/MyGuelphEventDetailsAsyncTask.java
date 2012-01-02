@@ -12,7 +12,6 @@ import org.jsoup.nodes.Element;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.os.AsyncTask;
-import android.util.Log;
 
 import java.io.IOException;
 import java.util.List;
@@ -54,8 +53,6 @@ public class MyGuelphEventDetailsAsyncTask extends AsyncTask<String, Void, Docum
             }
             result = connection.get();
         } catch (IOException e) {
-            e.printStackTrace();
-            Log.e("MyGuelphEventDetailsActivity", "Could not get event page using Jsoup.");
         }
 
         return result;
