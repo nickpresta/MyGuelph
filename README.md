@@ -25,3 +25,5 @@ Supports Android 2.3.3+.
 * \#android-dev on Freenode
 * StackOverflow
 * [Android-RSS-Reader-Library](https://github.com/matshofman/Android-RSS-Reader-Library) - Used for pulling down RSS data.
+* [JSoup](http://jsoup.org/) - Used for parsing and fetching HTML pages.
+* [Oxygen Icons](http://www.oxygen-icons.org/) - Icons used in application.
