@@ -7,7 +7,7 @@ Tested on:
 * Android 4.0.1 (physical Galaxy Nexus)
 * Android 2.3.6 (physical Nexus S)
 
-Supports Android 2.3.3+.
+Supports Android 2.2+.
 
 ## Planned Features
 * Map. Building searching by name/course codes. Shows you and the target building. Useful for new students.
