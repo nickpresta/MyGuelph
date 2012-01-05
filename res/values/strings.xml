@@ -25,7 +25,7 @@
     <!-- For the Global Menubar. -->
     <string name="menu_about">About</string>
     <string name="about_title">About My Guelph</string>
-    <string name="about_contents">My Guelph by Nick Presta\nnick@nickpresta.ca</string>
+    <string name="about_contents">My Guelph by Nick Presta&lt;br>&lt;a href="http://myguelph.android.nickpresta.ca/">Homepage&lt;/a>&lt;br>&lt;a href="mailto:myguelph@gmail.com">Email&lt;/a></string>
     
     <!-- For the Menubars. -->
     <string name="menu_preferences">Preferences</string>

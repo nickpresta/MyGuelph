@@ -4,11 +4,13 @@ package ca.nickpresta.android.myguelph;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
+import android.text.Html;
+import android.text.method.LinkMovementMethod;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 public class MyGuelphMenu extends Activity {
 
@@ -42,18 +44,15 @@ public class MyGuelphMenu extends Activity {
     }
 
     private static void showAboutDialog(Context context) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(context);
-        builder.setMessage(R.string.about_contents);
-        AlertDialog alert = builder.create();
-        alert.setTitle(R.string.about_title);
-        alert.setButton("OK", new DialogInterface.OnClickListener() {
 
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.cancel();
-
-            }
-        });
+        final AlertDialog alert = new AlertDialog.Builder(context)
+                .setPositiveButton(android.R.string.ok, null)
+                .setMessage(Html.fromHtml(context.getString(R.string.about_contents)))
+                .setTitle(R.string.about_title)
+                .create();
         alert.show();
+
+        ((TextView) alert.findViewById(android.R.id.message)).setMovementMethod(LinkMovementMethod
+                .getInstance());
     }
 }
