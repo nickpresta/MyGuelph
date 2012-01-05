@@ -9,6 +9,7 @@ import com.google.android.maps.MyLocationOverlay;
 import com.google.android.maps.Overlay;
 import com.google.android.maps.OverlayItem;
 
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.location.Address;
@@ -41,6 +42,8 @@ public class MyGuelphMapActivity extends MapActivity {
     private MapController mMapController;
     private MyLocationOverlay mMyLocationOverlay;
     private ArrayList<MyGuelphBuilding> mBuildingsList;
+    private Dialog mMainDialog;
+    private Dialog mResumeDialog;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -48,8 +51,9 @@ public class MyGuelphMapActivity extends MapActivity {
         setContentView(R.layout.map);
 
         MyGuelphApplication application = (MyGuelphApplication) getApplication();
+        mMainDialog = null;
         if (!application.isGpsAvailable()) {
-            application.redirectToIntentOrHome(this,
+            mMainDialog = application.redirectToIntentOrHome(this,
                     getString(R.string.missing_gps_connection), new Intent(
                             Settings.ACTION_LOCATION_SOURCE_SETTINGS));
             return;
@@ -60,6 +64,7 @@ public class MyGuelphMapActivity extends MapActivity {
         mMap.setSatellite(true);
         mMapController = mMap.getController();
 
+        mMyLocationOverlay = new MyLocationOverlay(this, mMap);
         initMap();
 
         mBuildingsList = new ArrayList<MyGuelphBuilding>();
@@ -114,7 +119,6 @@ public class MyGuelphMapActivity extends MapActivity {
     }
 
     private void initMap() {
-        mMyLocationOverlay = new MyLocationOverlay(this, mMap);
         mMap.getOverlays().add(mMyLocationOverlay);
         mMyLocationOverlay.enableMyLocation();
         mMyLocationOverlay.runOnFirstFix(new Runnable() {
@@ -129,20 +133,31 @@ public class MyGuelphMapActivity extends MapActivity {
     @Override
     protected void onPause() {
         super.onPause();
-        mMyLocationOverlay.disableMyLocation();
+        if (mMainDialog != null) {
+            mMainDialog.dismiss();
+        }
+        if (mResumeDialog != null) {
+            mResumeDialog.dismiss();
+        }
+        if (mMyLocationOverlay != null) {
+            mMyLocationOverlay.disableMyLocation();
+        }
     }
 
     @Override
     protected void onResume() {
         super.onResume();
         MyGuelphApplication application = (MyGuelphApplication) getApplication();
+        mResumeDialog = null;
         if (!application.isGpsAvailable()) {
-            application.redirectToIntentOrHome(this,
+            mResumeDialog = application.redirectToIntentOrHome(this,
                     getString(R.string.missing_gps_connection), new Intent(
                             Settings.ACTION_LOCATION_SOURCE_SETTINGS));
             return;
         }
-        mMyLocationOverlay.enableMyLocation();
+        if (mMyLocationOverlay != null) {
+            mMyLocationOverlay.enableMyLocation();
+        }
     }
 
     public void performSearch(View view) {

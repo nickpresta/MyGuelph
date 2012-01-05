@@ -3,6 +3,7 @@ package ca.nickpresta.android.myguelph;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,14 +15,18 @@ import android.widget.TextView;
 
 public class MyGuelphBalanceActivity extends Activity {
 
+    private Dialog mMainDialog;
+    private Dialog mResumeDialog;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.balance);
 
         MyGuelphApplication application = (MyGuelphApplication) getApplication();
+        mMainDialog = null;
         if (!application.isNetworkAvailable()) {
-            application.redirectToIntentOrHome(this,
+            mMainDialog = application.redirectToIntentOrHome(this,
                     getString(R.string.missing_network_connection), new Intent(
                             Settings.ACTION_SETTINGS));
             return;
@@ -80,11 +85,23 @@ public class MyGuelphBalanceActivity extends Activity {
     }
 
     @Override
+    protected void onPause() {
+        super.onPause();
+        if (mMainDialog != null) {
+            mMainDialog.dismiss();
+        }
+        if (mResumeDialog != null) {
+            mResumeDialog.dismiss();
+        }
+    }
+
+    @Override
     protected void onResume() {
         super.onResume();
         MyGuelphApplication application = (MyGuelphApplication) getApplication();
+        mResumeDialog = null;
         if (!application.isNetworkAvailable()) {
-            application.redirectToIntentOrHome(this,
+            mResumeDialog = application.redirectToIntentOrHome(this,
                     getString(R.string.missing_network_connection),
                     new Intent(Settings.ACTION_SETTINGS));
         }

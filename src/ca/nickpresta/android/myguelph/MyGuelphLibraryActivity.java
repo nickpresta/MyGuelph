@@ -1,6 +1,7 @@
 
 package ca.nickpresta.android.myguelph;
 
+import android.app.Dialog;
 import android.app.ListActivity;
 import android.content.Context;
 import android.content.Intent;
@@ -21,6 +22,8 @@ import java.util.ArrayList;
 public class MyGuelphLibraryActivity extends ListActivity {
 
     private MyGuelphLibraryCustomAdapter mLibraryAdapter;
+    private Dialog mMainDialog;
+    private Dialog mResumeDialog;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -28,8 +31,9 @@ public class MyGuelphLibraryActivity extends ListActivity {
         setContentView(R.layout.events);
 
         MyGuelphApplication application = (MyGuelphApplication) getApplication();
+        mMainDialog = null;
         if (!application.isNetworkAvailable()) {
-            application.redirectToIntentOrHome(this,
+            mMainDialog = application.redirectToIntentOrHome(this,
                     getString(R.string.missing_network_connection), new Intent(
                             Settings.ACTION_SETTINGS));
             return;
@@ -68,11 +72,23 @@ public class MyGuelphLibraryActivity extends ListActivity {
     }
 
     @Override
+    protected void onPause() {
+        super.onPause();
+        if (mMainDialog != null) {
+            mMainDialog.dismiss();
+        }
+        if (mResumeDialog != null) {
+            mResumeDialog.dismiss();
+        }
+    }
+
+    @Override
     protected void onResume() {
         super.onResume();
         MyGuelphApplication application = (MyGuelphApplication) getApplication();
+        mResumeDialog = null;
         if (!application.isNetworkAvailable()) {
-            application.redirectToIntentOrHome(this,
+            mResumeDialog = application.redirectToIntentOrHome(this,
                     getString(R.string.missing_network_connection),
                     new Intent(Settings.ACTION_SETTINGS));
         }

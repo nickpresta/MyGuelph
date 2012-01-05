@@ -13,6 +13,7 @@ import org.apache.http.message.BasicNameValuePair;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Application;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -215,7 +216,7 @@ public class MyGuelphApplication extends Application {
         return false;
     }
 
-    public void redirectToIntentOrHome(final Context context, String message, final Intent intent) {
+    public Dialog redirectToIntentOrHome(final Context context, String message, final Intent intent) {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setMessage(message)
                 .setCancelable(false)
@@ -233,6 +234,7 @@ public class MyGuelphApplication extends Application {
                 });
         AlertDialog alert = builder.create();
         alert.show();
+        return alert;
     }
 
     public DefaultHttpClient getDefaultHttpClient() {
